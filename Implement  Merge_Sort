@@ -1,0 +1,79 @@
+//Implement  Merge_Sort
+
+Input
+[4,2,3,5,1]
+
+Output
+[1,2,3,4,5]
+
+
+
+//Code
+
+//Tc : O(n * log n)     ;  Sc : O(n)
+
+class Solution {
+
+		
+	
+	void mergeSort(int[] arr) {
+		
+		int n = arr.length;
+		MergeSorter(arr, 0, n-1);     //Call MergeSorter function
+	}
+	
+	void MergeSorter(int arr[], int start, int end){
+		if(start < end){
+			int mid = (start+end)/2;
+			MergeSorter(arr, start , mid);
+			MergeSorter(arr, mid+1, end);
+			merge(arr,start, mid, end);		
+		}
+	}	
+		
+	void merge(int arr[], int start, int mid, int end){
+			int length1 = mid-start+1;
+			int length2 = end- mid;
+			
+			int arr1[] = new int[length1];
+			int arr2[] = new int[length2];
+			
+			for(int i = 0; i < length1; i++){
+				arr1[i] = arr[start + i];
+			}
+			for(int i = 0; i < length2; i++){
+				arr2[i] =arr[mid + 1 + i];
+			}
+			
+			int i = 0;
+			int j = 0;
+			int k = start;
+			
+			while(i < length1 && j < length2){
+				if(arr1[i] <= arr2[j]){
+					arr[k] = arr1[i];
+					k++;
+					i++;
+				}
+				else{
+					arr[k] = arr2[j];
+					k++;
+					j++;
+				}
+			}
+			
+			while(i < length1){
+				arr[k] = arr1[i];
+				k++;
+				i++;
+			}
+			
+			while(j < length2){
+			 	arr[k] = arr2[j];
+					k++;
+					j++;
+			}
+		
+		}	
+	
+}
