@@ -1,6 +1,6 @@
-Insertion Sort
+//Insertion Sort
 
-
+Insertion Sort is an in-place sorting algorithm.
 
 Input Format
 The first line contains 'T' denoting the no. of test cases.
