@@ -1,0 +1,56 @@
+// Merge Sort
+
+Merge Sort is a divide-and-conquer algorithm
+
+Input
+A = [4, 7, 9]
+B = [2, 11, 19]
+
+
+Output
+[2, 4, 7, 9, 11, 19]
+
+//Code
+
+
+public class Solution {
+    public int[] solve(final int[] A, final int[] B) {
+        int n = A.length;
+        int m = B.length;
+        int c[] = new int[n + m];
+
+        int p1 =0;
+        int p2 =0;
+        int p3 =0;
+
+        while(p1 < n && p2 < m){
+
+            if(A[p1] < B[p2]){
+                c[p3] = A[p1];
+                p1++;
+                p3++;
+            }
+            else{
+                c[p3] = B[p2];
+                p2++;
+                p3++;
+            }
+
+        }
+        while(p1 < n){
+            c[p3] = A[p1];
+            p1++;
+            p3++;
+        }
+
+        while(p2 < m){
+            c[p3] = B[p2];
+            p2++;
+            p3++;
+        }
+
+        return c;
+
+        
+    }
+}
