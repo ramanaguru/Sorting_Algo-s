@@ -1,47 +1,49 @@
 class Solution {
-    void quickSort(int[] arr) {
-		//This can be solved using by Insertion Sort(day -2; we implemented , please do check)
+	void quickSort (int[] arr) {
+		int n = arr.length;
+		qs(arr, 0 , n-1);
+	}
+	
+	public void qs(int arr[],int left , int right){
+		if(left < right){
+			int partition = makePartition(arr,left, right);
+			qs(arr,left , partition-1);
+			qs(arr,partition+1, right);
+			
+		}
+	}
+	
+	public int makePartition(int arr[], int l, int r){
+		int pivot = arr[l];
+		int i = l;
+		int j = r;
 		
-		//TC : O(NlogN)          ; SC : O(N);
-        int n = arr.length;
-        qs(arr, 0, n - 1);
-    }
-
-    void qs(int arr[], int low, int high) {
-        if (low < high) {
-            int partitionIndex = makePartition(arr, low, high);
-            qs(arr, low, partitionIndex - 1);
-            qs(arr, partitionIndex + 1, high);
-        }
-    }
-
-    int makePartition(int arr[], int low, int high) {
-        int pivot = arr[low];
-        int i = low + 1;
-        int j = high;
-
-        while (i <= j) {
-            while (i <= high && arr[i] < pivot) {
-                i++;
-            }
-            while (j >= low + 1 && arr[j] > pivot) {
-                j--;
-            }
-
-            if (i <= j) {
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-                i++;
-                j--;
-            }
-        }
-
-        // Swap pivot with the rightmost element smaller than the pivot
-        int temp = arr[low];
-        arr[low] = arr[j];
-        arr[j] = temp;
-
-        return j;
-    }
+		while(i <= j){
+			i++;
+			while(i <= r && arr[i] < pivot){
+				i++;
+			}
+			while(j >= l && arr[j] > pivot){
+				j--;
+			}
+			if(i <= j){
+				swap(arr, i, j);
+			}
+		}
+		
+		
+			swap(arr,l, j);
+		
+		return j;
+		
+		
+	}
+	
+	void swap(int arr[], int i , int j){
+		int temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+		
+	}
 }
+
